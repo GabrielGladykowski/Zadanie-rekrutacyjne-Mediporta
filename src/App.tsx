@@ -1,6 +1,8 @@
 import "./App.css";
 import { Global, css } from "@emotion/react";
 import { StyledEngineProvider } from "@mui/material/styles";
+import { Layout } from "./commponents/Layout";
+import { TagsTable } from "./commponents/TagsTable";
 
 const globalStyles = css`
   * {
@@ -22,31 +24,27 @@ const globalStyles = css`
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    background: #ffffff;
+    background: #d6d6d6;
     position: relative;
     overflow-x: hidden;
     width: 100vw;
     min-height: 100dvh;
     height: 100%;
   }
+
+  #root {
+    padding: 0;
+    margin: 0;
+  }
 `;
 
 function App() {
-  // const base = "https://api.stackexchange.com/";
-  // fetch(`${base}2.3/tags?order=desc&sort=popular&site=stackoverflow`)
-  //   .then((response) => {
-  //     if (!response.ok) {
-  //       throw new Error("Response is not okay");
-  //     }
-
-  //     return response.json();
-  //   })
-  //   .then((data) => console.log(data))
-  //   .catch((error) => console.error(error));
-
   return (
     <StyledEngineProvider injectFirst>
       <Global styles={globalStyles} />
+      <Layout>
+        <TagsTable />
+      </Layout>
     </StyledEngineProvider>
   );
 }
