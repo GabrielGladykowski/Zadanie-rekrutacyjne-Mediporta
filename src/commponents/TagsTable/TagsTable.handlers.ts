@@ -1,3 +1,4 @@
+import { TagsTableDataType } from "./TagsTable.types";
 import { Order } from "./TagsTableHead/TagsTableHead.types";
 
 const descendingComparator = <T>(a: T, b: T, orderBy: keyof T) => {
@@ -10,7 +11,7 @@ const descendingComparator = <T>(a: T, b: T, orderBy: keyof T) => {
   return 0;
 };
 
-const getComparator = <Key extends keyof unknown>(
+const getComparator = <Key extends keyof TagsTableDataType>(
   order: Order,
   orderBy: Key
 ): ((

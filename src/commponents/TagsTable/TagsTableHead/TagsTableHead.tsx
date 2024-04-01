@@ -1,10 +1,4 @@
-import {
-  Box,
-  TableCell,
-  TableHead,
-  TableRow,
-  TableSortLabel,
-} from "@mui/material";
+import { TableCell, TableHead, TableRow, TableSortLabel } from "@mui/material";
 import React from "react";
 import { TagsTableHeadCells } from "./TagsTableHead.data";
 import { v4 as uuid } from "uuid";
@@ -25,11 +19,11 @@ const TagsTableHead: React.FC<EnhancedTableHeadProps> = ({
   return (
     <TableHead>
       <TableRow>
-        {TagsTableHeadCells.map(({ id, label, isNumeric }) => {
+        {TagsTableHeadCells.map(({ id, label }) => {
           return (
             <TableCell
               key={uuid()}
-              align={isNumeric ? "right" : "left"}
+              align="right"
               padding="normal"
               sortDirection={orderBy === id ? order : false}
             >
@@ -39,13 +33,6 @@ const TagsTableHead: React.FC<EnhancedTableHeadProps> = ({
                 onClick={createSortHandler(id)}
               >
                 {label}
-                {orderBy === id ? (
-                  <Box component="span">
-                    {order === "desc"
-                      ? "sorted descending"
-                      : "sorted ascending"}
-                  </Box>
-                ) : null}
               </TableSortLabel>
             </TableCell>
           );

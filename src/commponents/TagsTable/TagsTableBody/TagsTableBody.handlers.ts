@@ -1,6 +1,8 @@
-const createData = (tagName: string, count: number) => ({
-  tagName,
-  count,
+import { TagsTableDataType } from "../TagsTable.types";
+
+const createData = (tagName: string, count: number): TagsTableDataType => ({
+  nameTag: tagName,
+  count: count,
 });
 
 const emptyRows = (page: number, rows: unknown[], rowsPerPage: number) =>
