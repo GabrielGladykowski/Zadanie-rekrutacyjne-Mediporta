@@ -1,46 +1,37 @@
 import { Skeleton, TableBody, TableCell, TableRow } from "@mui/material";
-// import { useQuery } from "@tanstack/react-query";
 import React from "react";
-// import { fetchTags } from "../TagsTable.server";
 import { Order } from "../TagsTableHead/TagsTableHead.types";
 import { v4 as uuid } from "uuid";
+import { getComparator, stableSort } from "../TagsTable.handlers";
+import { TagsTableDataType } from "../TagsTable.types";
 
 type TagsTableBody = {
-  order?: Order;
-  orderBy?: string;
-  page?: number;
-  rowsPerPage?: number;
-  rows?: unknown[];
+  order: Order;
+  orderBy: keyof TagsTableDataType;
+  page: number;
+  rowsPerPage: number;
+  rows: TagsTableDataType[];
   isLoading?: boolean;
   isError?: boolean;
 };
 
 const TagsTableBody: React.FC<TagsTableBody> = ({
-  // order,
-  // orderBy,
-  // page,
-  // rowsPerPage,
-  // rows,
+  order,
+  orderBy,
+  page,
+  rowsPerPage,
+  rows,
   isLoading = false,
   isError = false,
 }) => {
-  // const { data, isLoading, isError } = useQuery({
-  //   queryKey: ["tags"],
-  //   queryFn: fetchTags,
-  // });
-
-  // const visibleRows = React.useMemo(
-  //   () =>
-  //     stableSort(rows, getComparator(order, orderBy)).slice(
-  //       page * rowsPerPage,
-  //       page * rowsPerPage + rowsPerPage
-  //     ),
-  //   [order, orderBy, page, rowsPerPage]
-  // );
-
-  // console.log("data", data);
-  // console.log("isLoading", isLoading);
-  // console.log("isError", isError);
+  const visibleRows = React.useMemo(
+    () =>
+      stableSort(rows, getComparator(order, orderBy)).slice(
+        page * rowsPerPage,
+        page * rowsPerPage + rowsPerPage
+      ),
+    [order, orderBy, page, rowsPerPage, rows]
+  );
 
   return (
     <TableBody sx={{ width: "100%" }}>
@@ -65,7 +56,14 @@ const TagsTableBody: React.FC<TagsTableBody> = ({
           </TableRow>
         ))
       ) : (
-        <></>
+        <>
+          {visibleRows.map((row) => (
+            <TableRow key={uuid()}>
+              <TableCell align="right">{row.nameTag}</TableCell>
+              <TableCell align="right">{row.count}</TableCell>
+            </TableRow>
+          ))}
+        </>
       )}
     </TableBody>
   );
