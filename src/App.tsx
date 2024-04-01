@@ -3,6 +3,8 @@ import { Global, css } from "@emotion/react";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { Layout } from "./commponents/Layout";
 import { TagsTable } from "./commponents/TagsTable";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./QueryClient";
 
 const globalStyles = css`
   * {
@@ -33,6 +35,7 @@ const globalStyles = css`
   }
 
   #root {
+    max-width: 100%;
     padding: 0;
     margin: 0;
   }
@@ -42,9 +45,11 @@ function App() {
   return (
     <StyledEngineProvider injectFirst>
       <Global styles={globalStyles} />
-      <Layout>
-        <TagsTable />
-      </Layout>
+      <QueryClientProvider client={queryClient}>
+        <Layout>
+          <TagsTable />
+        </Layout>
+      </QueryClientProvider>
     </StyledEngineProvider>
   );
 }
