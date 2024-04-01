@@ -56,7 +56,7 @@ const TagsTable: React.FC = () => {
   };
 
   return (
-    <Paper sx={{ width: "100%" }}>
+    <Paper sx={{ width: "100%", maxWidth: "800px" }}>
       <Toolbar
         sx={{
           display: "flex",
