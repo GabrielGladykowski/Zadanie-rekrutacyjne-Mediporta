@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 import { getComparator, stableSort } from "../TagsTable.handlers";
 import { TagsTableDataType } from "../TagsTable.types";
 
-type TagsTableBody = {
+export type TagsTableBodyProps = {
   order: Order;
   orderBy: keyof TagsTableDataType;
   page: number;
@@ -15,7 +15,7 @@ type TagsTableBody = {
   isError?: boolean;
 };
 
-const TagsTableBody: React.FC<TagsTableBody> = ({
+const TagsTableBody: React.FC<TagsTableBodyProps> = ({
   order,
   orderBy,
   page,

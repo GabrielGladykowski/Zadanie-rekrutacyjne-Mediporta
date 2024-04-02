@@ -1,0 +1,38 @@
+import { css } from "@emotion/react";
+
+const globalStyles = css`
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: #d6d6d6;
+    position: relative;
+    overflow-x: hidden;
+    width: 100vw;
+    min-height: 100dvh;
+    height: 100%;
+  }
+
+  #root {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+`;
+
+export { globalStyles };
