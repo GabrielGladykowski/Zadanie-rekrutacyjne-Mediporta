@@ -1,55 +1,34 @@
 import "./App.css";
-import { Global, css } from "@emotion/react";
+import { Global } from "@emotion/react";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { Layout } from "./commponents/Layout";
-import { TagsTable } from "./commponents/TagsTable";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "./QueryClient";
-
-const globalStyles = css`
-  * {
-    margin: 0;
-    padding: 0;
-  }
-
-  *,
-  *::after,
-  *::before {
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    background: #d6d6d6;
-    position: relative;
-    overflow-x: hidden;
-    width: 100vw;
-    min-height: 100dvh;
-    height: 100%;
-  }
-
-  #root {
-    max-width: 100%;
-    padding: 0;
-    margin: 0;
-  }
-`;
+import { FieldsArray, TagsTable } from "./commponents/TagsTable";
+import { useQuery } from "@tanstack/react-query";
+import { fetchTags } from "./server";
+import { createData } from "./commponents/TagsTable/TagsTableBody/TagsTableBody.handlers";
+import { TagsTableDataType } from "./commponents/TagsTable/TagsTable.types";
+import { globalStyles } from "./globalStyles";
 
 function App() {
+  const { data, isLoading, isError } = useQuery<FieldsArray>({
+    queryKey: ["tags"],
+    queryFn: fetchTags,
+  });
+
+  const rowsData = data
+    ? data?.items.map(({ name, count }) => createData(name, count))
+    : ([] as TagsTableDataType[]);
+
   return (
     <StyledEngineProvider injectFirst>
       <Global styles={globalStyles} />
-      <QueryClientProvider client={queryClient}>
-        <Layout>
-          <TagsTable />
-        </Layout>
-      </QueryClientProvider>
+      <Layout>
+        <TagsTable
+          isLoading={isLoading}
+          isError={isError}
+          rowsData={rowsData}
+        />
+      </Layout>
     </StyledEngineProvider>
   );
 }
