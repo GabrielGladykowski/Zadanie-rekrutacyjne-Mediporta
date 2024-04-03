@@ -30,6 +30,7 @@ npm run storybook
  - Material UI,
  - ReactQuery,
  - Storybook,
+ - Eslint
 
 ## Why ReactQuery
 
