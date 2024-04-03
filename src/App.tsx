@@ -1,13 +1,11 @@
 import "./App.css";
-import { Global } from "@emotion/react";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { Layout } from "./commponents/Layout";
-import { FieldsArray, TagsTable } from "./commponents/TagsTable";
+import { TagsTable } from "./commponents/TagsTable";
 import { useQuery } from "@tanstack/react-query";
 import { fetchTags } from "./server";
-import { createData } from "./commponents/TagsTable/TagsTableBody/TagsTableBody.handlers";
-import { TagsTableDataType } from "./commponents/TagsTable/TagsTable.types";
-import { globalStyles } from "./globalStyles";
+import { createData } from "./handlers";
+import { FieldsArray, TagsTableDataType } from "./types";
 
 function App() {
   const { data, isLoading, isError } = useQuery<FieldsArray>({
@@ -21,7 +19,6 @@ function App() {
 
   return (
     <StyledEngineProvider injectFirst>
-      <Global styles={globalStyles} />
       <Layout>
         <TagsTable
           isLoading={isLoading}

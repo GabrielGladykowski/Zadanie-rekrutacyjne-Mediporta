@@ -3,7 +3,7 @@ import React from "react";
 import { TagsTableHeadCells } from "./TagsTableHead.data";
 import { v4 as uuid } from "uuid";
 import { EnhancedTableHeadProps } from "./TagsTableHead.types";
-import { TagsTableDataType } from "../TagsTable.types";
+import { TagsTableDataType } from "../../../types";
 
 const TagsTableHead: React.FC<EnhancedTableHeadProps> = ({
   onRequestSort,

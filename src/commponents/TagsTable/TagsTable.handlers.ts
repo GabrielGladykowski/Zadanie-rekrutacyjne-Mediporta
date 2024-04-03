@@ -1,5 +1,5 @@
-import { TagsTableDataType } from "./TagsTable.types";
-import { Order } from "./TagsTableHead/TagsTableHead.types";
+import { TagsTableDataType, ValueOf } from "../../types";
+import { ORDER } from "./TagsTableHead/TagsTableHead.constants";
 
 const descendingComparator = <T>(a: T, b: T, orderBy: keyof T) => {
   if (b[orderBy] < a[orderBy]) {
@@ -12,7 +12,7 @@ const descendingComparator = <T>(a: T, b: T, orderBy: keyof T) => {
 };
 
 const getComparator = <Key extends keyof TagsTableDataType>(
-  order: Order,
+  order: ValueOf<typeof ORDER>,
   orderBy: Key
 ): ((
   a: { [key in Key]: number | string },

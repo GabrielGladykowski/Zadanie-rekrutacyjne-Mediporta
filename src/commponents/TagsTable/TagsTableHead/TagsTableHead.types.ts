@@ -1,18 +1,16 @@
-import { TagsTableDataType } from "../TagsTable.types";
+import { TagsTableDataType, ValueOf } from "../../../types";
+import { ORDER } from "./TagsTableHead.constants";
 
 export type TagsTableHeadCellsType = {
   id: keyof TagsTableDataType;
   label: string;
-  isNumeric: boolean;
 };
-
-export type Order = "asc" | "desc";
 
 export type EnhancedTableHeadProps = {
   onRequestSort: (
     event: React.MouseEvent<unknown>,
     property: keyof TagsTableDataType
   ) => void;
-  order: Order;
+  order: ValueOf<typeof ORDER>;
   orderBy: string;
 };
