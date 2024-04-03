@@ -32,13 +32,13 @@ npm run storybook
  - Storybook,
  - Eslint
 
-## Why ReactQuery
+## Technical decisions
 
-I decided to use ReactQuery, because of its lightweight nature and built-in caching mechanisms, it lets you skip the hassle of handling state in a more complex way in the application.
+ - **React Query:** I chose this tool because it simplifies managing API queries with its caching abilities. It can replace the traditional store by remembering the responses from the queries and not re-fetching the same data, which eliminates the need to maintain it.
 
-## Storybook - request mocking
+ - **MUI:** This UI toolkit was selected for its maturity and thoughtful design among the available options. Its support for accessibility and my previous experience with MUI allowed me to quickly proceed with the task.
 
-In storybook, data is mocked to avoid unnecessary API calls.
+ - **Component:** It was designed to avoid sending API queries in Storybook. I decided it was unnecessary and better to use Storybook as documentation for components, without the need for real data.
 
 ## Required version
 
