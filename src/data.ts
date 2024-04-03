@@ -1,4 +1,4 @@
-import { TagsTableDataType } from "./commponents/TagsTable/TagsTable.types";
+import { TagsTableDataType } from "./types";
 
 const rowsData = [
   {
