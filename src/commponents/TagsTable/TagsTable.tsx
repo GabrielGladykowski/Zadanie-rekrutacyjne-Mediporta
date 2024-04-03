@@ -10,17 +10,8 @@ import React, { useState } from "react";
 import { TagsTableHead } from "./TagsTableHead";
 import { TagsTableBody } from "./TagsTableBody";
 import ErrorIcon from "@mui/icons-material/Error";
-import { TagsTableDataType } from "./TagsTable.types";
-import { Order } from "./TagsTableHead/TagsTableHead.types";
-
-type Fields = {
-  count: number;
-  name: string;
-};
-
-export type FieldsArray = {
-  items: Fields[];
-};
+import { TagsTableDataType, ValueOf } from "../../types";
+import { ORDER } from "./TagsTableHead/TagsTableHead.constants";
 
 export type TagsTableProps = {
   rowsData: TagsTableDataType[];
@@ -38,7 +29,9 @@ const TagsTable: React.FC<TagsTableProps> = ({
 }) => {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
-  const [order, setOrder] = React.useState<Order>("asc");
+  const [order, setOrder] = React.useState<ValueOf<typeof ORDER>>(
+    ORDER.ASCENDING
+  );
   const [orderBy, setOrderBy] =
     React.useState<keyof TagsTableDataType>("count");
 
@@ -87,8 +80,9 @@ const TagsTable: React.FC<TagsTableProps> = ({
         <TagsTableHead
           onRequestSort={(_: unknown, property: keyof TagsTableDataType) => {
             setOrderBy(property);
-            setOrder((prev: Order) => (prev === "asc" ? "desc" : "asc"));
-            console.log("property", property);
+            setOrder((prev: ValueOf<typeof ORDER>) =>
+              prev === ORDER.ASCENDING ? ORDER.DESCENDING : ORDER.ASCENDING
+            );
           }}
           order={order}
           orderBy={orderBy}

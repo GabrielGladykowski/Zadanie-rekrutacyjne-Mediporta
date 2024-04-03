@@ -1,12 +1,12 @@
 import { Skeleton, TableBody, TableCell, TableRow } from "@mui/material";
 import React from "react";
-import { Order } from "../TagsTableHead/TagsTableHead.types";
 import { v4 as uuid } from "uuid";
 import { getComparator, stableSort } from "../TagsTable.handlers";
-import { TagsTableDataType } from "../TagsTable.types";
+import { TagsTableDataType, ValueOf } from "../../../types";
+import { ORDER } from "../TagsTableHead/TagsTableHead.constants";
 
 export type TagsTableBodyProps = {
-  order: Order;
+  order: ValueOf<typeof ORDER>;
   orderBy: keyof TagsTableDataType;
   page: number;
   rowsPerPage: number;

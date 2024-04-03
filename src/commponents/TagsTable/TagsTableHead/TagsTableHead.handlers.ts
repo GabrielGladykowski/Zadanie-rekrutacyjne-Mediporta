@@ -1,4 +1,4 @@
-import { TagsTableDataType } from "../TagsTable.types";
+import { TagsTableDataType } from "../../../types";
 
 const createSortHandler =
   (
